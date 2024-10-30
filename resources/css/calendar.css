@@ -1,0 +1,65 @@
+:root {
+	--oldprimary: #df6919;
+	--primary: #33a533;
+	--secondary: #4e5d6c;
+	--success: #5cb85c;
+	--info: #5bc0de;
+	--warning: #ffc107;
+	--danger: #d9534f;
+	--light: #abb6c2;
+	--dark: #20374c;
+}
+
+.fc {
+	margin: 10px 0 0 0;
+	background-color: #f0f0f0;
+}
+
+/* header toolbar */
+.fc-toolbar {
+	background-color: var(--dark);
+	height: 60px;
+	padding: 0 10px;
+}
+
+.fc-toolbar-chunk {
+	background-color: none;
+}
+
+.fc-toolbar-title {
+	color: white;
+}
+
+.fc-button {
+	font-size: small !important;
+	height: 32px !important;
+}
+
+.fc-button-primary {
+	background-color: var(--primary) !important;
+	color: white !important;
+}
+
+/* body */
+
+.fc-daygrid-day-number {
+	color: #33a533;
+}
+
+.fc-more-popover {
+	max-height: 200px;
+	overflow-y: auto;
+}
+
+/* List */
+.fc-list-event:hover {
+	background-color: var(--primary);
+}
+
+.fc-list-event:hover a, .fc-list-event:hover .fc-list-event-title, .fc-list-event:hover .fc-list-event-graphic{
+	background-color: var(--primary) !important;
+}
+
+.weekend {
+	background-color: var(--secondary) !important;
+}

@@ -25,50 +25,29 @@ body {
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
     font-family: "Noto Sans Sora Sompeng", "Gill Sans", "Gill Sans MT", Calibri,
         "Trebuchet MS", sans-serif !important;
-    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 header {
     width: 100%;
     height: 6%;
-}
-
-.main-wrapper {
-    width: 100%;
-    height: 94%;
-}
-
-nav {
-    width: 15%;
-    height: 100%;
-    overflow-x: hidden;
-}
-
-nav form {
-    width: 100%;
-    height: 5%;
-}
-
-nav ul {
-    width: 100%;
-    height: 95%;
-}
-
-nav ul a i {
-    margin-right: 10px;
+    position: sticky !important;
+    top: 0;
+    z-index: 9999;
 }
 
 main {
-    width: 85%;
-    height: 100%;
+    flex: 1;
     overflow-y: auto;
-    overflow-x: hidden;
+}
+
+section {
+    height: calc(100vh - 60px);
+    padding: 20px;
+    margin: 10px 0;
 }
 
 /* Custom Utilities */
@@ -82,21 +61,4 @@ a:hover {
 
 .bg-primary {
     background-color: var(--primary) !important;
-}
-
-.active {
-    color: var(--light);
-    border: none;
-}
-
-.text-red {
-    color: #a02334;
-}
-
-.text-light {
-    color: #f8eded !important;
-}
-
-label {
-    background: transparent !important;
 }
