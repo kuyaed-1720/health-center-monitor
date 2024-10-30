@@ -28,11 +28,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/tasks', [EventController::class, 'getTasks']);
     Route::get('/events/create', [EventController::class, 'create'])->name('events.create');
     Route::post('/events', [EventController::class, 'store'])->name('events.store');
-});
 
-// Admin-level access
-Route::middleware(['admin'])->group(function () {
-    Route::get('/users', function() {
-        return view('users.index');
+    // Admin-level access
+    Route::middleware(['admin'])->group(function () {
+        Route::get('/users', function() {
+            return view('users.index');
+        });
     });
+
 });
