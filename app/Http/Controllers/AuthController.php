@@ -11,6 +11,12 @@ use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
+
+    public function showRegistrationForm()
+    {
+        return view('auth.register');
+    }
+
     public function register(Request $request)
     {
         $request->validate([
@@ -61,19 +67,10 @@ class AuthController extends Controller
             $request->session()->regenerate();
             session(['username' => $user->first_name . " " . $user->last_name]);
             session(['email' => $request->email]);
-            session(['role']) => $user->role;
+            session(['role' => $user->role]);
             return redirect()->intended('/');
         }
 
         return back();
-    }
-
-    public function logout()
-    {
-        $user = User::where('email', session('email'))->first();
-        $user->update(['status' => 'offline']);
-        Session::flush();
-        Auth::logout();
-        return redirect('/login');
     }
 }
