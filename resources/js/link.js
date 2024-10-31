@@ -16,16 +16,19 @@ window.addEventListener("DOMContentLoaded", function () {
     });
 
     let confirmPasswordEye = document.getElementById("confirm-password-eye");
-    confirmPasswordEye.addEventListener("click", function () {
-        let confirmPasswordInput = document.getElementById("confirm_password");
-        if (confirmPasswordInput.type === "password") {
-            confirmPasswordInput.type = "text";
-            confirmPasswordEye.className = "bi bi-eye-fill";
-        } else {
-            confirmPasswordInput.type = "password";
-            confirmPasswordEye.className = "bi bi-eye-slash-fill";
-        }
-    });
+    if (confirmPasswordEye) {
+        confirmPasswordEye.addEventListener("click", function () {
+            let confirmPasswordInput =
+                document.getElementById("confirm_password");
+            if (confirmPasswordInput.type === "password") {
+                confirmPasswordInput.type = "text";
+                confirmPasswordEye.className = "bi bi-eye-fill";
+            } else {
+                confirmPasswordInput.type = "password";
+                confirmPasswordEye.className = "bi bi-eye-slash-fill";
+            }
+        });
+    }
 });
 
 function links() {

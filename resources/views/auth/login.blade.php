@@ -10,15 +10,16 @@ Don't have an account? <a href="{{ route('register.form') }}" class="text-warnin
 		@csrf
 		<h2>Login</h2>
 		<div class="form-floating mt-5">
-			<input type="email" class="form-control" id="email" name="email" placeholder="Email Address"
-				aria-label="Email Address" value="{{ old('email') }}">
+			<input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email"
+				placeholder="Email Address" aria-label="Email Address" value="{{ old('email') }}">
 			<label for="email" class="text-secondary">Email address <span class="text-danger">*</span></label>
 			@error('email')
 			<small class="text-danger">{{ $message }}</small>
 			@enderror
 		</div>
 		<div class="form-floating input-group mt-5">
-			<input type="password" name="password" id="password" class="form-control" placeholder="Password"
+			<input type="password" name="password" id="password"
+				class="form-control @error('password') is-invalid @enderror" placeholder="Password"
 				aria-label="Password">
 			<span class="input-group-text"><i class="bi bi-eye-slash-fill" id="password-eye"></i></span>
 			<label for="password" class="text-secondary">Password <span class="text-danger">*</span></label>
