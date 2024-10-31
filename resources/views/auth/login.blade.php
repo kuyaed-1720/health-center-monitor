@@ -2,7 +2,7 @@
 @section('title', 'Login Page')
 @section('heading', 'Login Page')
 @section('text')
-Don't have an account? <a href="{{ route('showRegistrationForm') }}" class="text-warning" id="registerBtn">Register</a>
+Don't have an account? <a href="{{ route('register.form') }}" class="text-warning" id="registerBtn">Register</a>
 @endsection
 @section('content')
 <div class="rounded text-light" style="width: 70%; height: 70%">

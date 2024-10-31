@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventController;
 use Illuminate\Support\Facades\Route;
@@ -11,29 +12,31 @@ Route::get('/landing', function () {
 });
 
 // Guest-level access
-Route::middleware(['guest'])->group(function () {
-    Route::get('/login', [UserController::class, 'showLoginForm'])->name('showLoginForm');
-    Route::post('/login', [UserController::class, 'login'])->name('login');
-    Route::get('/register', [UserController::class, 'showRegistrationForm'])->name('showRegistrationForm');
-    Route::post('/register', [UserController::class, 'register'])->name('register');
-});
+Route::controller(AuthController::class)->group(function () {
+    Route::get('/login', 'showLoginForm')->name('login.form');
+    Route::post('/login', 'login')->name('login');
+    Route::get('/register','showRegistrationForm')->name('register.form');
+    Route::post('/register', 'register')->name('register');
+})->middleware('guest');
 
 // User-level access
 Route::middleware(['auth'])->group(function () {
-    Route::get('/', [UserController::class, 'welcome']);
-    Route::get('/welcome', [UserController::class, 'welcome'])->name('welcome');
-    Route::get('/logout', [UserController::class, 'logout'])->name('logout');
-    Route::get('/calendar', [EventController::class, 'showCalendar'])->name('calendar');
-    Route::get('/events', [EventController::class, 'getEvents']);
-    Route::get('/tasks', [EventController::class, 'getTasks']);
-    Route::get('/events/create', [EventController::class, 'create'])->name('events.create');
-    Route::post('/events', [EventController::class, 'store'])->name('events.store');
-
-    // Admin-level access
-    Route::middleware(['admin'])->group(function () {
-        Route::get('/users', function() {
-            return view('users.index');
-        });
+    Route::controller(UserController::class)->group(function () {
+        Route::get('/', 'welcome');
+        Route::get('/welcome', 'welcome')->name('welcome');
+        Route::get('/logout', 'logout')->name('logout');
     });
 
+    Route::controller(EventController::class)->group(function () {
+        Route::get('/calendar', 'showCalendar')->name('calendar');
+        Route::get('/events', 'getEvents');
+        Route::get('/tasks', 'getTasks');
+        Route::get('/events/create', 'create')->name('events.create');
+        Route::post('/events', 'store')->name('events.store');
+    });
+
+    // Admin-level access
+    Route::get('/users', function() {
+        return view('users.index');
+    })->middleware('admin');
 });
